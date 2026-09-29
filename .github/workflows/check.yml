@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install genlayer-test pytest
+      - run: pip install genlayer-test==0.29.2 pytest
       - run: pytest tests -q
   web:
     runs-on: ubuntu-latest
