@@ -14,7 +14,7 @@ def state(contract, purchase_id="order-1"):
 
 @pytest.fixture
 def ready(direct_vm, direct_deploy):
-    contract = direct_deploy("contracts/claimshield.py")
+    contract = direct_deploy("contracts/claimshield.py", sdk_version="v0.2.12")
     direct_vm.sender = bytes.fromhex(BUYER[2:])
     direct_vm.deal(direct_vm.sender, 10**20)
     direct_vm.value = 10**18
