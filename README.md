@@ -4,7 +4,11 @@ ClaimShield is a GenLayer purchase and warranty dispute application. A buyer fun
 
 ## Status
 
-The contract and browser application are implemented and locally tested. **No Studionet deployment, live contract address, finalized on-chain lifecycle, or public website is claimed in this repository yet.** The app intentionally disables wallet writes until a verified `VITE_CONTRACT_ADDRESS` is configured. Contract code and tests are public for review. The deployment and live proof record should be added only after a finalized deployment and reads confirm the same source.
+The contract and browser application are implemented and locally tested. The contract was deployed on GenLayer Studionet with Normal (Full Consensus) execution, and its first finalized `get_count()` read returned `0`. The production website build points to that deployment. A complete on-chain purchase and claim lifecycle has not yet been demonstrated; the local tests cover those paths.
+
+- Contract: `0x1a52a2AC72D67dE058928Eb8857876deCeA48d25`
+- Deployment transaction: `0xf9feadf9e1a4fa43c13a076a4806ed57fa7d3bc5a0a2db556f0960c5eb37ae9a`
+- Explorer: https://explorer-studio.genlayer.com/address/0x1a52a2AC72D67dE058928Eb8857876deCeA48d25
 
 ## Workflow
 
@@ -36,8 +40,8 @@ Frontend (Node 20+):
 ```sh
 cd web
 npm ci
-cp .env.example .env
-# Enter a verified contract address in VITE_CONTRACT_ADDRESS
+# The production address is in .env.production; for local dev:
+cp .env.production .env
 npm run build
 npm run dev
 ```
@@ -46,10 +50,10 @@ The app uses `genlayer-js` 1.1.8's `waitForTransactionReceipt({status: FINALIZED
 
 ## Deployment verification checklist
 
-1. Deploy `contracts/claimshield.py` in GenLayer Studio on Studionet with no constructor arguments; record the finalized transaction, address, code hash, and explorer link.
-2. Call `get_count()` at `LATEST_FINAL`; expect `0` on a fresh deployment. Compare deployed code with the repository source.
+1. [Done] Deploy `contracts/claimshield.py` in GenLayer Studio on Studionet with no constructor arguments and record the finalized transaction and address. Studio displayed the uploaded source; an independent deployed-code hash comparison is still outstanding.
+2. [Done] Call `get_count()` with Studio's Finalized state; it returned `0` on the fresh deployment.
 3. Fund a small test purchase from a buyer wallet; use a separate seller wallet to accept the fixed digests. Read final state after each write.
 4. Run the claim, seller response, both evidence submissions, verdict, challenge and second review, finalization, credit, and withdrawal. Observe external payout completion, not just the parent write receipt.
-5. Set `VITE_CONTRACT_ADDRESS`, build and publish the site, then test wallet connection, write, final receipt, and public read from the published origin.
+5. Build and publish the site with the configured address. Test wallet connection, write, final receipt, and public read from the published origin.
 
-Do not submit a deployment address or end-to-end proof until those checks actually succeed. This is test-network escrow software and has not been audited for real-value use.
+Do not describe the live claim lifecycle as verified until those checks actually succeed. This is test-network escrow software and has not been audited for real-value use.
