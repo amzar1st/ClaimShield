@@ -1,0 +1,8 @@
+web/node_modules/
+web/dist/
+web/.env
+__pycache__/
+.pytest_cache/
+artifacts/
+.venv/
+*.pyc
