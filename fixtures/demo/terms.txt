@@ -1,5 +1,5 @@
 ClaimShield Studionet demo purchase terms
 Product: one demonstration laptop, no physical shipment or real money.
-Escrow: 0.01 test GEN. Buyer may release payment after accepting the seller's terms.
+Escrow: 1 test GEN. Buyer may release payment after accepting the seller's terms.
 Seller must accept these terms and the warranty policy within two days.
 This document is a test fixture and does not constitute a real sale.
