@@ -4,11 +4,12 @@ ClaimShield is a GenLayer purchase and warranty dispute application. A buyer fun
 
 ## Status
 
-The contract and browser application are implemented and locally tested. The contract was deployed on GenLayer Studionet with Normal (Full Consensus) execution, and its first finalized `get_count()` read returned `0`. The production website build points to that deployment. A complete on-chain purchase and claim lifecycle has not yet been demonstrated; the local tests cover those paths.
+The contract and browser application are implemented and locally tested. The contract was deployed on GenLayer Studionet with Normal (Full Consensus) execution, and its first finalized `get_count()` read returned `0`. The production website is public and points to that deployment. A public browser read of a fresh nonexistent purchase ID returned the expected "No finalized purchase with that ID" result on September 29, 2026. A complete on-chain purchase and claim lifecycle has not yet been demonstrated; the local tests cover those paths.
 
 - Contract: `0x1a52a2AC72D67dE058928Eb8857876deCeA48d25`
 - Deployment transaction: `0xf9feadf9e1a4fa43c13a076a4806ed57fa7d3bc5a0a2db556f0960c5eb37ae9a`
 - Explorer: https://explorer-studio.genlayer.com/address/0x1a52a2AC72D67dE058928Eb8857876deCeA48d25
+- Public app: https://claimshield.amzar1st96.chatgpt.site/
 
 ## Workflow
 
@@ -54,6 +55,6 @@ The app uses `genlayer-js` 1.1.8's `waitForTransactionReceipt({status: FINALIZED
 2. [Done] Call `get_count()` with Studio's Finalized state; it returned `0` on the fresh deployment.
 3. Fund a small test purchase from a buyer wallet; use a separate seller wallet to accept the fixed digests. Read final state after each write.
 4. Run the claim, seller response, both evidence submissions, verdict, challenge and second review, finalization, credit, and withdrawal. Observe external payout completion, not just the parent write receipt.
-5. Build and publish the site with the configured address. Test wallet connection, write, final receipt, and public read from the published origin.
+5. [Done] Build and publish the site with the configured address. A public finalized read from the published origin returned the expected missing-record result. Wallet connection, write, and final receipt still require a buyer wallet and were not verified in this browser session.
 
 Do not describe the live claim lifecycle as verified until those checks actually succeed. This is test-network escrow software and has not been audited for real-value use.
