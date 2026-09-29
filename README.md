@@ -27,7 +27,7 @@ Verdicts: `WARRANTY_VALID` (buyer refund), `CLAIM_REJECTED` (seller release), `P
 Python 3.12+:
 
 ```sh
-pip install genlayer-test pytest
+pip install genlayer-test==0.29.2 pytest
 pytest tests -q
 ```
 
